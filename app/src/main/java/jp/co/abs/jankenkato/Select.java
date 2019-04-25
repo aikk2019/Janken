@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+//コメント追加テスト
+
 public class Select extends AppCompatActivity {
     ImageView mgu;
     ImageView mch;

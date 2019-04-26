@@ -12,6 +12,7 @@ public class Select extends AppCompatActivity {
     ImageView mch;
     ImageView mpa;
     int mComputer;  //コンピュータの手
+    Random rnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,12 @@ public class Select extends AppCompatActivity {
 
         //コンピュータ側の手をランダムに選択する
         long seed = System.currentTimeMillis();
-        Random rnd = new Random(seed);
+        rnd = new Random(seed);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mComputer = rnd.nextInt(3);
     }
 

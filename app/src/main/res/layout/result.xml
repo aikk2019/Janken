@@ -47,5 +47,53 @@
         android:layout_gravity="center"
         android:id="@+id/playerImage"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0勝"
+            android:textSize="20dp"
+            android:textColor="#FF000000"
+            android:id="@+id/win"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0敗"
+            android:textSize="20dp"
+            android:textColor="#FF000000"
+            android:id="@+id/lose"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0引き分け"
+            android:textSize="20dp"
+            android:textColor="#FF000000"
+            android:id="@+id/draw"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="残り対戦回数0回"
+        android:textColor="#FF000000"
+        android:id="@+id/restGameText"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="次へ"
+        android:textSize="20dp"
+        android:textColor="#FF000000"
+        android:id="@+id/next"
+        />
 
 </LinearLayout>

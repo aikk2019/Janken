@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">じゃんけんゲーム</string>
+    <string-array name="gameNum">
+        <item>1回</item>
+        <item>2回</item>
+        <item>3回</item>
+        <item>4回</item>
+        <item>5回</item>
+        <item>6回</item>
+        <item>7回</item>
+        <item>8回</item>
+        <item>9回</item>
+        <item>10回</item>
+    </string-array>
 </resources>

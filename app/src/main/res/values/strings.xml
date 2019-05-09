@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">じゃんけんゲーム</string>
+    <string name="app_name">じゃんけんゲームver2</string>
     <string-array name="gameNum">
         <item>1回</item>
         <item>2回</item>

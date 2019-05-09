@@ -26,6 +26,7 @@
             android:text="0勝"
             android:textSize="20dp"
             android:textColor="#FF000000"
+            android:id="@+id/win"
             />
         <TextView
             android:layout_width="0dp"
@@ -34,6 +35,7 @@
             android:text="0敗"
             android:textSize="20dp"
             android:textColor="#FF000000"
+            android:id="@+id/lose"
             />
         <TextView
             android:layout_width="0dp"
@@ -42,6 +44,7 @@
             android:text="0引き分け"
             android:textSize="20dp"
             android:textColor="#FF000000"
+            android:id="@+id/draw"
             />
     </LinearLayout>
 
@@ -50,6 +53,7 @@
         android:layout_height="wrap_content"
         android:text="タイトル画面へ"
         android:textSize="20dp"
+        android:id="@+id/titleButton"
         />
 
 

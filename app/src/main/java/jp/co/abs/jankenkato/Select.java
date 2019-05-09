@@ -3,7 +3,6 @@ package jp.co.abs.jankenkato;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,16 +11,16 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Select extends AppCompatActivity {
-    ImageView mgu;
-    ImageView mch;
-    ImageView mpa;
-    TextView mTopText;
-    int mComputer;  //コンピュータの手
-    Random rnd;
-    int mGameNumber;    //タイトル画面で設定した対戦回数
-    int mWin;
-    int mLose;
-    int mDraw;
+    private ImageView mgu;
+    private ImageView mch;
+    private ImageView mpa;
+    private TextView mTopText;
+    private int mComputer;  //コンピュータの手
+    private Random rnd;
+    private int mGameNumber;    //タイトル画面で設定した対戦回数
+    private int mWin;
+    private int mLose;
+    private int mDraw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class Select extends AppCompatActivity {
         mch.setOnClickListener(clickListener);
         mpa.setOnClickListener(clickListener);
 
-        //
         long seed = System.currentTimeMillis();
         rnd = new Random(seed);
 

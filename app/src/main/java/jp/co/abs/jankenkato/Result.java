@@ -11,37 +11,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Result extends AppCompatActivity {
-    ImageView mTopImage;
-    ImageView mComputerImage;
-    ImageView mPlayerImage;
-    TextView mWOrLText;
-    Button mNextButton;
-    TextView mRestGameText;
-    TextView mWinText;
-    TextView mLoseText;
-    TextView mDrawText;
-    int mGameNumber;
-    int mWin;
-    int mLose;
-    int mDraw;
-    final String Draw = "引き分け";
-    final String Win = "あなたの勝ち!!";
-    final String Lose = "あなたの負け..";
+
+    private int mGameNumber;
+    private int mWin;
+    private int mLose;
+    private int mDraw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
 
-        mTopImage = findViewById(R.id.topImage);
-        mComputerImage = findViewById(R.id.computerImage);
-        mPlayerImage = findViewById(R.id.playerImage);
-        mWOrLText = findViewById(R.id.wOrLText);
-        mNextButton = findViewById(R.id.next);
-        mRestGameText = findViewById(R.id.restGameText);
-        mWinText = findViewById(R.id.win);
-        mLoseText = findViewById(R.id.lose);
-        mDrawText = findViewById(R.id.draw);
+        ImageView topImage = findViewById(R.id.topImage);
+        ImageView computerImage = findViewById(R.id.computerImage);
+        ImageView playerImage = findViewById(R.id.playerImage);
+        TextView wOrLText = findViewById(R.id.wOrLText);
+        Button nextButton = findViewById(R.id.next);
+        TextView restGameText = findViewById(R.id.restGameText);
+        TextView winText = findViewById(R.id.win);
+        TextView loseText = findViewById(R.id.lose);
+        TextView drawText = findViewById(R.id.draw);
 
         //Selectから送られてきた手の情報を変数に代入する
         Intent intent = this.getIntent();
@@ -55,58 +44,62 @@ public class Result extends AppCompatActivity {
         //プレイヤーの手の画像を設定する
         switch (player){
             case 0:
-                mPlayerImage.setImageResource(R.drawable.j_gu02);
+                playerImage.setImageResource(R.drawable.j_gu02);
                 break;
             case 1:
-                mPlayerImage.setImageResource(R.drawable.j_ch02);
+                playerImage.setImageResource(R.drawable.j_ch02);
                 break;
             case 2:
-                mPlayerImage.setImageResource(R.drawable.j_pa02);
+                playerImage.setImageResource(R.drawable.j_pa02);
                 break;
         }
 
         //コンピュータの手の画像を設定する
         switch (computer){
             case 0:
-                mComputerImage.setImageResource(R.drawable.j_gu02);
+                computerImage.setImageResource(R.drawable.j_gu02);
                 break;
             case 1:
-                mComputerImage.setImageResource(R.drawable.j_ch02);
+                computerImage.setImageResource(R.drawable.j_ch02);
                 break;
             case 2:
-                mComputerImage.setImageResource(R.drawable.j_pa02);
+                computerImage.setImageResource(R.drawable.j_pa02);
                 break;
         }
 
         //勝敗を判定して画面上の画像と中央の文字列を設定する
+        final String Draw = "引き分け";
+        final String Win = "あなたの勝ち!!";
+        final String Lose = "あなたの負け..";
+
         if(player == computer){
             Log.d("myLog",Draw);
-            mTopImage.setImageResource(R.drawable.draw);
-            mWOrLText.setText(Draw);
+            topImage.setImageResource(R.drawable.draw);
+            wOrLText.setText(Draw);
             mDraw++;
         }else if((player+1)%3 == computer){
             Log.d("myLog",Win);
-            mTopImage.setImageResource(R.drawable.win);
-            mWOrLText.setText((Win));
+            topImage.setImageResource(R.drawable.win);
+            wOrLText.setText((Win));
             mWin++;
         }else{
             Log.d("myLog",Lose);
-            mTopImage.setImageResource(R.drawable.lose);
-            mWOrLText.setText(Lose);
+            topImage.setImageResource(R.drawable.lose);
+            wOrLText.setText(Lose);
             mLose++;
         }
 
         //
-        String restGameText = "残り対戦回数"+(mGameNumber-(mWin+mLose+mDraw))+"回";
-        String winText = mWin+"勝";
-        String loseText = mLose+"敗";
-        String drawText = mDraw+"引き分け";
-        mRestGameText.setText(restGameText);
-        mWinText.setText(winText);
-        mLoseText.setText(loseText);
-        mDrawText.setText(drawText);
+        String restGame = "残り対戦回数"+(mGameNumber-(mWin+mLose+mDraw))+"回";
+        String win = mWin+"勝";
+        String lose = mLose+"敗";
+        String draw = mDraw+"引き分け";
+        restGameText.setText(restGame);
+        winText.setText(win);
+        loseText.setText(lose);
+        drawText.setText(draw);
 
-        mNextButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //次の画面へ値を送る
@@ -117,9 +110,11 @@ public class Result extends AppCompatActivity {
                 intent.putExtra("draw",mDraw);
 
                 if(mGameNumber == (mWin + mLose + mDraw)){
+                    //合計結果表示画面へ遷移
                     intent.setClass(getApplicationContext(),End.class);
                     startActivity(intent);
                 }else if (mGameNumber > (mWin + mLose + mDraw)){
+                    //手選択画面へ遷移
                     setResult(RESULT_OK, intent);
                     finish();
                 }

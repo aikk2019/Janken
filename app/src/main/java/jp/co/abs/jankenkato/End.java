@@ -11,24 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class End extends AppCompatActivity {
-    Button mTitleButton;
-    TextView mEndText;
-    TextView mWinText;
-    TextView mLoseText;
-    TextView mDrawText;
-    final String Draw = "引き分け";
-    final String Win = "あなたの勝ち!!";
-    final String Lose = "あなたの負け..";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end);
 
-        mTitleButton = findViewById(R.id.titleButton);
-        mEndText = findViewById(R.id.endText);
-        mWinText = findViewById(R.id.win);
-        mLoseText = findViewById(R.id.lose);
-        mDrawText = findViewById(R.id.draw);
+        Button titleButton = findViewById(R.id.titleButton);
+        TextView endTextView = findViewById(R.id.endText);
+        TextView winTextView = findViewById(R.id.win);
+        TextView loseTextView = findViewById(R.id.lose);
+        TextView drawTextView = findViewById(R.id.draw);
 
         //Result画面から送られた値を取得する
         Intent intent = getIntent();
@@ -36,22 +29,27 @@ public class End extends AppCompatActivity {
         int lose = intent.getIntExtra("lose",0);
         int draw = intent.getIntExtra("draw",0);
 
+        //勝敗内訳のテキストを設定する
         String winText = win+"勝";
         String loseText = lose+"敗";
         String drawText = draw+"引き分け";
-        mWinText.setText(winText);
-        mLoseText.setText(loseText);
-        mDrawText.setText(drawText);
+        winTextView.setText(winText);
+        loseTextView.setText(loseText);
+        drawTextView.setText(drawText);
 
+        //合計結果を判定
+        final String Draw = "引き分け";
+        final String Win = "あなたの勝ち!!";
+        final String Lose = "あなたの負け..";
         if(win == lose){
-            mEndText.setText(Draw);
+            endTextView.setText(Draw);
         }else if(win > lose){
-            mEndText.setText(Win);
+            endTextView.setText(Win);
         }else {
-            mEndText.setText(Lose);
+            endTextView.setText(Lose);
         }
 
-        mTitleButton.setOnClickListener(new View.OnClickListener() {
+        titleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Start.class);

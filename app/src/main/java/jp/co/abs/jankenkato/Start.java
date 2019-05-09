@@ -10,17 +10,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Start extends AppCompatActivity {
-Spinner mGameNumberSpinner;
-Button mStartButton;
+private Spinner mGameNumberSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
 
         mGameNumberSpinner = findViewById(R.id.gameNumberSpinner);
-        mStartButton = findViewById(R.id.startButton);
+        Button startButton = findViewById(R.id.startButton);
 
-        mStartButton.setOnClickListener(new View.OnClickListener() {
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String temp = mGameNumberSpinner.getSelectedItem().toString();

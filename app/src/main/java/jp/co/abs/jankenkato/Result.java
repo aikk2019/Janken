@@ -50,8 +50,6 @@ public class Result extends AppCompatActivity {
         mWin = intent.getIntExtra("win",0);
         mLose = intent.getIntExtra("lose",0);
         mDraw = intent.getIntExtra("draw",0);
-        Log.d("myLog","player:"+player+" computer:"+computer+" gameNumber"+mGameNumber);
-        Log.d("myLog","win:"+mWin+" lose"+mLose+" draw"+mDraw);
 
         //プレイヤーの手の画像を設定する
         switch (player){
@@ -110,7 +108,6 @@ public class Result extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("myLog","resultClick");
                 //次の画面へ値を送る
                 Intent intent = new Intent();
                 intent.putExtra("gameNumber",mGameNumber);
@@ -121,10 +118,8 @@ public class Result extends AppCompatActivity {
                     intent.setClass(getApplicationContext(),End.class);
                     startActivity(intent);
                 }else if (mGameNumber > (mWin + mLose + mDraw)){
-                    intent.setClass(getApplicationContext(),Select.class);
-                    startActivity(intent);
-                }else {
-                    //エラー
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
             }
         });

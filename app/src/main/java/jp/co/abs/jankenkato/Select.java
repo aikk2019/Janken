@@ -41,23 +41,36 @@ public class Select extends AppCompatActivity {
         long seed = System.currentTimeMillis();
         rnd = new Random(seed);
 
-        //Start画面、またはResult画面から送られた値を取得する
+        //Start画面から送られた値を取得する
         Intent intent = this.getIntent();
         mGameNumber = intent.getIntExtra("gameNumber",-1);
-        mWin = intent.getIntExtra("win",0);
-        mLose = intent.getIntExtra("lose",0);
-        mDraw = intent.getIntExtra("draw",0);
-        Log.d("myLog","gameNumber:"+mGameNumber);
 
-        String topText = mWin+mLose+mDraw+1+"戦目じゃーんけーん...";
-        mTopText.setText(topText);
+        Log.d("myLog2","onCreate");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         //コンピュータ側の手をランダムに選択する
         mComputer = rnd.nextInt(3);
+
+        //
+        String topText = mWin+mLose+mDraw+1+"戦目じゃーんけーん...";
+        mTopText.setText(topText);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode,resultCode,intent);
+
+        //Result画面から送られた値を取得する
+        mGameNumber = intent.getIntExtra("gameNumber",-1);
+        mWin = intent.getIntExtra("win",0);
+        mLose = intent.getIntExtra("lose",0);
+        mDraw = intent.getIntExtra("draw",0);
+
+        onResume();
     }
 
     View.OnClickListener clickListener = new View.OnClickListener() {
@@ -83,5 +96,7 @@ public class Select extends AppCompatActivity {
             startActivityForResult(intent, 0);
         }
     };
+
+
 
 }

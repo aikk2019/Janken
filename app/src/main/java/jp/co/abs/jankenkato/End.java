@@ -28,10 +28,12 @@ public class End extends AppCompatActivity {
         mLoseText = findViewById(R.id.lose);
         mDrawText = findViewById(R.id.draw);
 
+        //Result画面から送られた値を取得する
         Intent intent = getIntent();
         int win = intent.getIntExtra("win",0);
         int lose = intent.getIntExtra("lose",0);
         int draw = intent.getIntExtra("draw",0);
+
         String winText = win+"勝";
         String loseText = lose+"敗";
         String drawText = draw+"引き分け";

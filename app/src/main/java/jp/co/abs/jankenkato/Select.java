@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,8 +45,6 @@ public class Select extends AppCompatActivity {
         //Start画面から送られた値を取得する
         Intent intent = this.getIntent();
         mGameNumber = intent.getIntExtra("gameNumber",-1);
-
-        Log.d("myLog2","onCreate");
     }
 
     @Override
@@ -56,7 +55,7 @@ public class Select extends AppCompatActivity {
         mComputer = rnd.nextInt(3);
 
         //
-        String topText = mWin+mLose+mDraw+1+"戦目じゃーんけーん...";
+        String topText = mWin + mLose + mDraw + 1 + "戦目じゃーんけーん...";
         mTopText.setText(topText);
     }
 
@@ -93,10 +92,20 @@ public class Select extends AppCompatActivity {
             intent.putExtra("win",mWin);
             intent.putExtra("lose",mLose);
             intent.putExtra("draw",mDraw);
+
             startActivityForResult(intent, 0);
         }
     };
 
-
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction()==KeyEvent.ACTION_DOWN) {
+            if (event.getKeyCode()==KeyEvent.KEYCODE_BACK) {
+                //戻るボタンが押されたときデフォルトの処理をしない
+                return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
 
 }

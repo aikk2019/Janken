@@ -3,6 +3,8 @@ package jp.co.abs.jankenkato;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -53,8 +55,20 @@ public class End extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Start.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction()==KeyEvent.ACTION_DOWN) {
+            if (event.getKeyCode()==KeyEvent.KEYCODE_BACK) {
+                //戻るボタンが押されたときデフォルトの処理をしない
+                return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
     }
 }
